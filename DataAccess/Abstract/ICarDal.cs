@@ -13,6 +13,7 @@ namespace DataAccess.Abstract
     {
         List<ColorDetailDto> GetColorDetails();
         List<BrandDetailDto> GetBrandDetails();
+        List<CarDetailDto> GetCarDetails();
 
     }
 }

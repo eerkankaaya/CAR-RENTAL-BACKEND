@@ -9,30 +9,62 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        CarManager carManager = new CarManager(new EfCarDal());
-        var result = carManager.GetColorDetails();
+        //CarManager carManager = new CarManager(new EfCarDal());
+        
+        
+        
+        
+        
+        
+        
+        
+        //GetColorDetails(carManager);
 
-        if (result.Success == true)
-        {
-            foreach (var car in result.Data)
-            {
-                Console.WriteLine(car.ColorId + "/" + car.ColorName + "/" + car.BrandName);
-                Console.WriteLine(result.Success);
-            }
-        }
-        //foreach (var car in carManager.GetBrandDetails())
-        //{
-        //    Console.WriteLine(car.BrandId + "/" + car.BrandName + "/" + car.ColorName);
+        //BrandDetail(carManager);
+        //UserManager userManager = new UserManager(new(EfUserDal());
+        //    var result = userManager.Add("bmw");
 
+        //    if (result.Success==true)
+        //    {
+        //        foreach (var user in result.Message)
+        //        {
+        //            Console.WriteLine();
+        //        }
+
+        //    }
+
+
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+
+
+        //    };
         //}
 
-
-        else
-        {
-            Console.WriteLine(result.Message);
-
-
-        };
     }
 
+    //private static void BrandDetail(CarManager carManager)
+    //{
+    //    foreach (var car in carManager.GetBrandDetails())
+
+
+    //    {
+    //        Console.WriteLine(car.BrandId + "/" + car.BrandName + "/" + car.ColorName);
+
+    //    }
+    //}
+
+    //private static void GetColorDetails(CarManager carManager)
+    //{       var result = carManager.GetColorDetails();
+
+    //    if (result.Success == true)
+    //    {
+    //        foreach (var car in result.Data)
+    //        {
+    //            Console.WriteLine(car.ColorId + "/" + car.ColorName + "/" + car.BrandName);
+    //            Console.WriteLine(result.Success);
+    //        }
+    //    }
+    //}
 }

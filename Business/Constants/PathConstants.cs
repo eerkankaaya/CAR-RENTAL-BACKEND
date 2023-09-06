@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Constants
 {
-    public interface IColorService
+    public class PathConstants
     {
+        public static string ImagesPath = "wwwroot\\images";
     }
 }

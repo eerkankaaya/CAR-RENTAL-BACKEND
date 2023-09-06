@@ -21,6 +21,6 @@ namespace Business.Abstract
         IDataResult<Car> Get(string car );
         IDataResult<List<ColorDetailDto>> GetColorDetails();
         IDataResult<List<BrandDetailDto>> GetBrandDetails();
-
+        IResult AddTransactionalTest(Car car);
     }
 }
