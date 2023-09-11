@@ -29,26 +29,28 @@ builder.Host.ConfigureContainer<ContainerBuilder>(options =>
 // Add services to the container.
 
 
-var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();// Token Options to Token Options
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//jwt tabanlý yetkilendirme etkinleþtirmek için
+    .AddJwtBearer(options =>//jwt yapýlandýrmasý
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidIssuer = tokenOptions.Issuer,
-            ValidAudience = tokenOptions.Audience,
-            ValidateIssuerSigningKey = true,
+            ValidateIssuer = true,//veren taraf
+            ValidateAudience = true,//hedef kitle
+            ValidateLifetime = true,//süresi 
+            ValidIssuer = tokenOptions.Issuer,//hangi kaynak
+            ValidAudience = tokenOptions.Audience,//hangi hizmet tarafýndan kullanýlacak
+            ValidateIssuerSigningKey = true,//key doðrulama
             IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
         };
     });
 
-builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
+
+builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });//dependencyResolvers ekleme
 
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
 
 
 // Diðer ayarlamalar
@@ -75,11 +77,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(x => x.AllowAnyHeader()
+      .AllowAnyMethod()
+      .WithOrigins("http://localhost:4200"));
 
-app.UseAuthentication();
+
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseAuthentication();//Kullanýcý söylediði kiþi mi?
+app.UseAuthorization();//yetki vs. doðruladýktan sonra kullanýcý hangi kaynaklara eriþebilir doðrulamasý?
 
 app.MapControllers();
 

@@ -30,9 +30,9 @@ namespace Core.Aspects.Autofac.Performance
 
         protected override void OnAfter(IInvocation invocation)
         {
-            if (_stopwatch.Elapsed.TotalSeconds > _interval)
+            if (_stopwatch.Elapsed.TotalSeconds > _interval) //geçen süre verilen interval süreden büyükse
             {
-                Debug.WriteLine($"Performance : {invocation.Method.DeclaringType.FullName}.{invocation.Method.Name}-->{_stopwatch.Elapsed.TotalSeconds}");
+                Debug.WriteLine($"Performance : {invocation.Method.DeclaringType.FullName}.{invocation.Method.Name}-->{_stopwatch.Elapsed.TotalSeconds}");//console da belit.  mail olarak da belirtilebilir//
             }
             _stopwatch.Reset();
         }

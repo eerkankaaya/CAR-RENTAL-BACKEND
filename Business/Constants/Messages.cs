@@ -28,6 +28,11 @@ namespace Business.Constants
         public static string LoginSuccessful = "Giriş Başarılı!";
         public static string UserExists = "Kullanıcı Mevcut!";
         public static string TokenCreated = "Token Oluşturuldu!!";
+        public static string Register = "Kayıt işlemi başarıyla tamamlandı";
+
+        public static string CustomersListed = "Müşteriler Listelendi";
+
+        public static string RentalListed = "Kiralamalar Listelendi";
     }
 
 

@@ -20,10 +20,8 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Admin")]
-    
-    [ValidationAspect(typeof(CarValidator))]
-    [SecuredOperation("Admin")]
+    //[SecuredOperation("Admin")]
+    //[ValidationAspect(typeof(CarValidator))]
     [PerformanceAspect(5)]
     public class CarManager : ICarService
     {
@@ -37,8 +35,7 @@ namespace Business.Concrete
 
 
         
-        [CacheRemoveAspect("IProductService.Get")]
-       public IResult Add(Car car)
+        public IResult Add(Car car)
         {
             IResult result = BusinessRules.Run(CheckIfCarCountOfCarIdCorrect(car.CarId),
                 CheckIfCarNameExists(car.CarName));
@@ -51,7 +48,17 @@ namespace Business.Concrete
            _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
+        
+        
+        //[CacheRemoveAspect("ICarService.Get")]
+        public IDataResult<Car> Get(string car)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.CarName == car));
+        }
 
+        
+        
+        
         public IResult AddTransactionalTest(Car car)
         {
             throw new NotImplementedException();
@@ -63,20 +70,12 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
         }
 
-        public IDataResult<Car> Get(string car)
-        {
-            return new SuccessDataResult<Car>(_carDal.Get(p => p.CarName == car));
-        }
 
-        [CacheRemoveAspect("IProductService.Get")]
+
+        //[CacheRemoveAspect("ICarService.GetAll")]
+       //[CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour == 13)
-            {
-                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
-            }
-
-
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
@@ -122,16 +121,20 @@ namespace Business.Concrete
             return new SuccessResult();
 
         }
-        
-            
 
-        
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
+        }
 
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_carDal.GetRentalDetails(), Messages.RentalListed);
+        }
 
-
-
-
-
-
+        public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_carDal.GetCustomerDetails(), Messages.CustomersListed);
+        }
     }
 }

@@ -18,8 +18,8 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p => p.UnitPrice).NotEmpty();
             RuleFor(p => p.UnitPrice).GreaterThan(5000);
             RuleFor(p => p.UnitPrice).GreaterThanOrEqualTo(6000).When(p => p.CarId == 2);
-            RuleFor(p => p.CarName).Must(StartWithB).WithMessage("Ürünler B Harfi ile Başlasıın");
-            RuleFor(p => p.CarName).Must(ContainsWtihC).WithMessage("Ürün isimleri C harfi içermeli!");
+            RuleFor(p => p.CarName).Must(StartWithB).WithMessage("Ürünler c Harfi ile Başlasıın");
+            RuleFor(p => p.CarName).Must(ContainsWtihC).WithMessage("Ürün isimleri o harfi içermeli!");
 
 
 
@@ -28,11 +28,11 @@ namespace Business.ValidationRules.FluentValidation
 
         private bool StartWithB(string arg)
         {
-            return arg.StartsWith("B");
+            return arg.StartsWith("c");
         }
         private bool ContainsWtihC(string arg)
         {
-            return arg.Contains("C");
+            return arg.Contains("o");
         }
 
 

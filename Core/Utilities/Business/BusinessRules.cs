@@ -9,7 +9,9 @@ namespace Core.Utilities.Business
 {
     public class BusinessRules
     {
-        public static IResult Run(params IResult[] logics)
+
+        //params ile IResult turunde virgulle ayirarak istediginiz kadar parametre ekleyebilirsiniz demek
+        public static IResult Run(params IResult[] logics)//>>>> logic burada kural demek
         {
             foreach (var logic in logics)
             {

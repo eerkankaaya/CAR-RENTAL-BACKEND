@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Extensions
-{
+{//hizmet koleksiyon uzantıları
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddDependencyResolvers(this IServiceCollection serviceCollection,

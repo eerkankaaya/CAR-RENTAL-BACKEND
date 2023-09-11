@@ -16,9 +16,8 @@ namespace DataAccess.Concrete.EntityFramewok
         {
             using (CarContext context = new CarContext())
             {
-                var result = from p in context.Cars
-                             join c in context.Colors
-                             on p.ColorId equals c.ColorId
+                var result = from c in context.Colors
+                             
                              select new ColorDetailDto
                              {
                                  ColorId = c.ColorId,
@@ -34,13 +33,60 @@ namespace DataAccess.Concrete.EntityFramewok
             }
 
         }
+        public List<RentalDetailDto> GetRentalDetails()
+        {
+            using (CarContext context = new CarContext())
+            {
+                var result = from c in context.Rentals
+                             join b in context.Brands
+                             on c.CarId equals b.CarId
+                             join co in context.Users
+                             on c.CustomerId equals co.CustomerId
+                             select new RentalDetailDto
+                             {
+                                 
+                                 BrandName=b.BrandName,
+                                 FirstName=co.FirstName,
+                                 LastName=co.LastName,
+                                 RentDate = c.RentDate,
+                                 ReturnDate = c.ReturnDate,
+
+                             };
+                return result.ToList();
+
+
+
+            }
+        }
+            public List<CustomerDetailDto> GetCustomerDetails()
+            {
+                using (CarContext context = new CarContext())
+                {
+                    var result = from c in context.Customers
+                                 
+                                  
+                                 select new CustomerDetailDto
+                                 {
+                                     CustomerId = c.CustomerId,
+                                     CompanyName = c.CompanyName,
+                                     UserId = c.UserId, 
+
+                                     
+                                 };
+                    return result.ToList();
+
+
+
+                }
+
+            }
         public List<BrandDetailDto> GetBrandDetails()
         {
             using (CarContext context = new CarContext())
             {
-                var result = from p in context.Cars
-                             join c in context.Brands
-                             on p.BrandId equals c.BrandId
+                var result = 
+                             from c in context.Brands
+                             
                              select new BrandDetailDto
                              {
                                  BrandName = c.BrandName,
@@ -71,7 +117,9 @@ namespace DataAccess.Concrete.EntityFramewok
                                  CarId = c.CarId,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
-                                 
+                                 UnitsInStock=c.UnitsInStock,
+                                 UnitPrice = c.UnitPrice,
+
                                  CarName=c.CarName,
                                  BrandId = b.BrandId,
                                  

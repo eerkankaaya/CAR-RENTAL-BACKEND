@@ -26,7 +26,7 @@ namespace Business.Concrete
             _userService = userService;
             _tokenHelper = tokenHelper;
         }
-        [ValidationAspect(typeof(UserForRegisterValidator))]
+        [ValidationAspect(typeof(UserForRegisterValidator))]//brute force
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
@@ -41,7 +41,7 @@ namespace Business.Concrete
                 Status = true
             };
             _userService.Add(user);
-            return new SuccessDataResult<User>(user, "Kayıt oldu");
+            return new SuccessDataResult<User>(user, Messages.Register);
         }
         [ValidationAspect(typeof(UserForLoginValidator))]
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
@@ -49,7 +49,7 @@ namespace Business.Concrete
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
             if (userToCheck == null)
             {
-                return new ErrorDataResult<User>(Messages.UserNotFound);//messages.aaa eklersin//
+                return new ErrorDataResult<User>(Messages.UserNotFound);
             }
 
             if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
@@ -60,7 +60,7 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userToCheck, Messages.LoginSuccessful);
         }
 
-        public IResult UserExists(string email)
+        public IResult UserExists(string email)//kullanıcı var mı?
         {
             if (_userService.GetByMail(email) != null)
             {

@@ -14,6 +14,7 @@ namespace DataAccess.Abstract
         List<ColorDetailDto> GetColorDetails();
         List<BrandDetailDto> GetBrandDetails();
         List<CarDetailDto> GetCarDetails();
-
+        List<RentalDetailDto> GetRentalDetails();
+        List<CustomerDetailDto> GetCustomerDetails();
     }
 }

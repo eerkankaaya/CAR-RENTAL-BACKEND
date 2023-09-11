@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.FileHelper;
@@ -16,6 +17,7 @@ using IResult = Core.Utilities.Results.IResult;
 
 namespace Business.Concrete
 {
+    [SecuredOperation("Admin")]
     public class ImageManager : IImageService
     {
 
@@ -30,7 +32,7 @@ namespace Business.Concrete
         public IResult Add(IFormFile file, Image carImage)
         {
 
-            IResult result = BusinessRules.Run(CheckIfImageLimitExceed(carImage.CarId));
+            IResult result = BusinessRules.Run(CheckIfImageLimitExceed(carImage.CarId));//aşıp aşmadığının kontrolü
             if (result != null)
             {
                 return result;

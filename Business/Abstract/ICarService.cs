@@ -22,5 +22,8 @@ namespace Business.Abstract
         IDataResult<List<ColorDetailDto>> GetColorDetails();
         IDataResult<List<BrandDetailDto>> GetBrandDetails();
         IResult AddTransactionalTest(Car car);
+        IDataResult<List<CarDetailDto>> GetCarDetails();
+        IDataResult<List<RentalDetailDto>> GetRentalDetails();
+        IDataResult <List<CustomerDetailDto>> GetCustomerDetails();
     }
 }

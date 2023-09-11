@@ -25,6 +25,7 @@ namespace WebAPI.Controllers
         
         [HttpPost("login")]
         public ActionResult Login(UserForLoginDto userForLoginDto)
+            //http isteğine cevap veren login kontrol işlemi
         {
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)

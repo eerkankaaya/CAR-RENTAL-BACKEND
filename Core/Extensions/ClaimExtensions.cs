@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Core.Extensions
-{
+{//uzantıları talep et
     public static class ClaimExtensions
     {
         public static void AddEmail(this ICollection<Claim> claims, string email)

@@ -16,13 +16,13 @@ namespace Core.Aspects.Autofac.Caching
         private string _pattern;
         private ICacheManager _cacheManager;
 
-        public CacheRemoveAspect(string pattern)
+        public CacheRemoveAspect(string pattern)//Data eklenirse güncellenirse veya silinirse bellekteki data değiştiği için metotlara CacheRemoveAspect uygulanır.
         {
             _pattern = pattern;
             _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
         }
 
-        protected override void OnSuccess(IInvocation invocation)
+        protected override void OnSuccess(IInvocation invocation)//Onsuccess metot başarılı olursa git cacheden sil demek. yani ürün eklenmezse cacheden veriyi silmez.
         {
             _cacheManager.RemoveByPattern(_pattern);
         }
