@@ -1,0 +1,1 @@
+My C# project, designed with an OOP structure, has been created with Caching, Logging, Performance, Auth, Validation and many other structures. The project includes backend codes for the car rental site with its layered architectural structure.
