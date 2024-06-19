@@ -16,6 +16,6 @@ namespace Entity.Concrete
         public string CarName { get; set; }
         public int UnitsInStock { get; set; }
         public int UnitPrice { get; set; }
-
+        
     }
 }

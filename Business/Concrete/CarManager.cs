@@ -79,17 +79,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
-        public IDataResult<List<BrandDetailDto>> GetBrandDetails()
-        {
-            return new SuccessDataResult<List<BrandDetailDto>>(_carDal.GetBrandDetails());
-        }
-
-
-
-        public IDataResult<List<ColorDetailDto>> GetColorDetails()
-        {
-            return new SuccessDataResult<List<ColorDetailDto>>(_carDal.GetColorDetails());
-        }
+        
         
         public IResult Update(Car car)
         {
@@ -97,6 +87,18 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
+        }
+
+        
+
+        
+
+        
+        
         private IResult CheckIfCarCountOfCarIdCorrect(int carId)
         {
 
@@ -109,6 +111,7 @@ namespace Business.Concrete
             return new SuccessResult();
 
         }
+
         private IResult CheckIfCarNameExists(string carName)
         {
 
@@ -122,19 +125,6 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
-        }
-
-        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
-        {
-            return new SuccessDataResult<List<RentalDetailDto>>(_carDal.GetRentalDetails(), Messages.RentalListed);
-        }
-
-        public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
-        {
-            return new SuccessDataResult<List<CustomerDetailDto>>(_carDal.GetCustomerDetails(), Messages.CustomersListed);
-        }
+        
     }
 }

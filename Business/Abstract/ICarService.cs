@@ -19,11 +19,9 @@ namespace Business.Abstract
         IResult Delete(Car car);
         IDataResult<List<Car>> GetAll();
         IDataResult<Car> Get(string car );
-        IDataResult<List<ColorDetailDto>> GetColorDetails();
-        IDataResult<List<BrandDetailDto>> GetBrandDetails();
+       
         IResult AddTransactionalTest(Car car);
         IDataResult<List<CarDetailDto>> GetCarDetails();
-        IDataResult<List<RentalDetailDto>> GetRentalDetails();
-        IDataResult <List<CustomerDetailDto>> GetCustomerDetails();
+        
     }
 }

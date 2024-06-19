@@ -33,6 +33,7 @@ namespace Business.Constants
         public static string CustomersListed = "Müşteriler Listelendi";
 
         public static string RentalListed = "Kiralamalar Listelendi";
+        public static string BrandListed = "Markalar Listelendi";
     }
 
 
